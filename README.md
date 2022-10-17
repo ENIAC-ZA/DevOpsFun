@@ -51,7 +51,17 @@ docker ps (get jenkins container ID)
 docker cp 8dacbc0cc5e4:/var/jenkins_home/secrets/initialAdminPassword C:\Users\dayzd\Downloads
 ```
 -After the initial setup of jenkins + user creation I added the kubernetes plugin and restarted.
--Setting up agents is easy, 
+
+-Setting up kubernetes/jenkins agents I left most values on default, the only values I had to change were:
+```
+Credentials --> kubernetes login-secret
+WebSocket --> True
+Jenkins URL --> http://jenkins8080
+
+Podlabel
+|-Key   --- > jenkins
+|- Value ---> executor
+```
 
 
 
