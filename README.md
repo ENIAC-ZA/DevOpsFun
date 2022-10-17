@@ -15,10 +15,11 @@ Steps:
 
 -After kubernetes is installed I had access to the 'kubectl' commands and verified that everything was working,  some of the commands I used were:
 
-'kubectl get nodes'
-
-'kubectl get ns'
-
+```
+kubectl get nodes
+kubectl get ns
+kubectl proxy
+```
 ## Task 2:
 
 
