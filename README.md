@@ -14,8 +14,10 @@ Steps:
 -Install kubernetes from within docker settings menu.
 
 -After kubernetes is installed I had access to the 'kubectl' commands and verified that everything was working,  some of the commands I used were:
-kubectl get nodes
-kubectl get ns
+
+'kubectl get nodes'
+
+'kubectl get ns'
 
 ### Task 2:
 
