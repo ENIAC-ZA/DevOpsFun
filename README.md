@@ -1,4 +1,4 @@
-# Sybrin - Janco's Devops Test:
+# Sybrin - Janco's DevOps Test:
 
 ## Included in the readme is all the steps and filenames required to reproduce the tasks.
 
@@ -31,6 +31,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.1/a
 kubectl apply -f C:\Users\dayzd\.kube\dashboard-adminuser.yaml 
 kubectl -n kubernetes-dashboard create token admin-user --duration 300h0m0s
 ```
+
 
 
 -To deploy the 'simple-web' container, I created `simple-web-dep.yaml` and simply applied it to kubernetes:
