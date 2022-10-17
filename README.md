@@ -4,7 +4,7 @@
 
 
 ## Task 1:
-By far the easiest of the tasks, this was done mostly through a GUI, and verification of all the services was done through the command line.
+### By far the easiest of the tasks, this was done mostly through a GUI, and verification of all the services was done through the command line.
 Steps:
 
 -Install docker from - https://docs.docker.com/desktop/install/windows-install/
