@@ -28,7 +28,10 @@ kubectl apply -f C:\Users\dayzd\.kube\dashboard-adminuser.yaml
 kubectl -n kubernetes-dashboard create token admin-user --duration 300h0m0s
 ```
 ## Task 2:
-
+## For this task I created  `simple-web-dep.yaml` and simply applied it to kubernetes:
+```
+kubectl apply -f C:\Users\dayzd\.kube\simple-web-dep.yaml
+```
 
 
 
