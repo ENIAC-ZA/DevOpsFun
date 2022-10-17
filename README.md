@@ -21,7 +21,7 @@ kubectl get ns
 kubectl proxy
 ```
 
--Install k8-dashboard, and basic user creation/token:
+-Sample user creation/token and innstalling k8-dashboard:
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.1/aio/deploy/recommended.yaml
 kubectl apply -f C:\Users\dayzd\.kube\dashboard-adminuser.yaml 
