@@ -3,7 +3,7 @@
 ## Included in the readme is all the steps and filenames required to reproduce the tasks.
 
 
-### Task 1:
+## Task 1:
 By far the easiest of the tasks, this was done mostly through a GUI, and verification of all the services was done through the command line.
 Steps:
 
@@ -19,24 +19,24 @@ Steps:
 
 'kubectl get ns'
 
-### Task 2:
+## Task 2:
 
 
 
 
-### Task 3:
+## Task 3:
 
 
 
-### Question 1:
-
-
-
-
-
-### Question 2:
+## Question 1:
 
 
 
 
-### Question 3:
+
+## Question 2:
+
+
+
+
+## Question 3:
