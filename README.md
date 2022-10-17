@@ -45,7 +45,7 @@ kubectl apply -f C:\Users\dayzd\.kube\simple-web-dep.yaml
 ```
 kubectl apply -f C:\Users\dayzd\.kube\jenkins-dep.yaml
 ```
--After deploying jenkins, it was accessible from localhost:30000 I used 'docker cp' to get the initial password, but I know it's availbe from log files as well.
+-After deploying jenkins, it was accessible from localhost:30000 I used 'docker cp' to get the initial password, but I know it's available from log files as well.
 ```
 docker ps (get jenkins container ID)
 docker cp 8dacbc0cc5e4:/var/jenkins_home/secrets/initialAdminPassword C:\Users\dayzd\Downloads
