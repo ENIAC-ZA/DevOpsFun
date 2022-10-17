@@ -59,8 +59,8 @@ WebSocket   --> True
 Jenkins URL --> http://jenkins8080
 
 Podlabel
-|-Key   --- > jenkins
-|- Value ---> executor
+|-Key   ---> jenkins
+|-Value ---> executor
 ```
 
 
