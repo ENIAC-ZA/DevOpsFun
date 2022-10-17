@@ -1,5 +1,3 @@
 # Sybrin - Janco's Devops Test:
 
-## ------------------------------------------------------------------------
-## Bellow you will find the steps and files needed to reproduce the tasks.|
-## ------------------------------------------------------------------------
+## Included in the readme is all the steps and filenames required to reproduce the tasks.
