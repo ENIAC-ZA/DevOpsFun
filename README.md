@@ -62,6 +62,12 @@ Podlabel
 |-Key   ---> jenkins
 |-Value ---> executor
 ```
+-I also made sure to decrease the jenkins default agents to 0.
+
+-Jenkins was now ready for deployments.
+
+
+##Task 3
 
 
 
