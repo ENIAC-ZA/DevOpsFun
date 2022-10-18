@@ -72,6 +72,7 @@ pipeline {
           sh 'rm ./eShopOnWeb/src/BlazorAdmin/wwwroot/ -r'
           sh 'dotnet dev-certs https && dotnet dev-certs https --trust'
           sh 'dotnet run --project ./eShopOnWeb/src/PublicApi/PublicApi.csproj'
+          sh 'dotnet run --project ./eShopOnWeb/src/Web/Web.csproj'
         }
       }
     }
