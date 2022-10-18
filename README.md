@@ -113,7 +113,8 @@ kubectl apply C:\Users\dayzd\.kube/eShop-services.yaml
 
 
 - Now I start running into problems:
- I can test if everything is working by cloning the repo, restoring the project and running it using `dotnet run` in the pipeline. This test pipe is called 'test-jenkins-pipe.yaml'
+
+I can test if everything is working by cloning the repo, restoring the project and running it using `dotnet run` in the pipeline. This test pipe is called 'test-jenkins-pipe.yaml'
 If I do this, the output of the pipe looks good and we can see no errors:
 Web App:
 <img src="https://i.imgur.com/nUh6mcf.png" height="350" />
