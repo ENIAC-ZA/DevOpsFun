@@ -98,6 +98,18 @@ kubectl apply -f C:\Users\dayzd\.kube\sqlserver-dep.yaml
 <img src="https://i.imgur.com/9ZtkKco.png" height="350" />
 
 
+- Now I start running into problems:
+ I can test if everything is working by cloning the repo, restoring the project and running it using `dotnet run` in the pipeline. This test pipe is called 'test-jenkins-pipe.yaml'
+If I do this, the output of the pipe looks good and we can see no errors:
+Web App:
+<img src="https://i.imgur.com/nUh6mcf.png" height="350" />
+Api App:
+<img src="https://i.imgur.com/jCJmxNy.png" height="350" />
+
+The only issue is that using `dotnet run` only runs the application in an interactive-terminal session. Not useful for deploying.
+ 
+
+
 ## Question 1:
 
 This is the repo :D
