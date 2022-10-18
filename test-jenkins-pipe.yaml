@@ -1,0 +1,111 @@
+pipeline {
+  agent {
+    kubernetes {
+      yaml '''
+        apiVersion: v1
+        kind: Pod
+        matchLabels:
+          app: e-shop-web
+        spec:
+          containers:
+          - name: net
+            image: mcr.microsoft.com/dotnet/sdk:6.0
+            tty: true
+            ports:
+                - name: web-https-port
+                  containerPort: 5001
+                - name: web-http-port
+                  containerPort: 5000
+                - name: api-http-port
+                  containerPort: 5098
+                - name: api-https-port
+                  containerPort: 5099
+        '''
+    }
+  }
+  
+  stages {
+    
+      stage ('Clean workspace') {
+         steps{
+            container('net') {
+            cleanWs()
+            }
+        }
+            }
+      
+    stage('Clone Repo') {
+      steps {
+        container('net') {
+         sh 'git clone https://github.com/ENIAC-ZA/eShopOnWeb.git'
+        }
+      }
+    }
+    
+    stage('Restore Project') {
+      steps {
+        container('net') {
+          sh 'dotnet restore ./eShopOnWeb/src/Web/Web.csproj'
+          sh 'dotnet restore ./eShopOnWeb/src/PublicApi/PublicApi.csproj'
+          sh 'dotnet tool install --tool-path ~/bin  dotnet-ef '
+          sh '~/bin/dotnet-ef database update -c catalogcontext -p ./eShopOnWeb/src/Infrastructure/Infrastructure.csproj -s ./eShopOnWeb/src/Web'
+          sh '~/bin/dotnet-ef database update -c appidentitydbcontext -p ./eShopOnWeb/src/Infrastructure/Infrastructure.csproj -s ./eShopOnWeb/src/Web'
+        }
+      }
+    }
+    
+    
+    stage('Publish Project') {
+      steps {
+        container('net') {
+          sh 'dotnet publish -c Web ./eShopOnWeb/src/Web/Web.csproj -o ./eShopOnWeb/src/Web/'
+          sh 'dotnet publish -c Release ./eShopOnWeb/src/PublicApi/PublicApi.csproj -o ./eShopOnWeb/src/PublicApi'
+        }
+      }
+    }
+    
+    stage('Deploy Project') {
+      steps {
+        container('net') {
+          sh 'rm ./eShopOnWeb/src/BlazorAdmin/bin/Debug/net6.0/wwwroot/_framework -r'
+          sh 'rm ./eShopOnWeb/src/Web/wwwroot/ -r'
+          sh 'rm ./eShopOnWeb/src/BlazorAdmin/wwwroot/ -r'
+          sh 'dotnet dev-certs https && dotnet dev-certs https --trust'
+          sh 'dotnet run --project ./eShopOnWeb/src/PublicApi/PublicApi.csproj'
+        }
+      }
+    }
+    
+    
+    
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
