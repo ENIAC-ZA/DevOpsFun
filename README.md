@@ -71,7 +71,7 @@ Podlabel
 
 ## Task 3:
 ### This task taught me a lot, I spent most of my time debugging and learning.
-Using `dotnet run` you're able to run and access the pages, however If you use `dotnet publish // dotnet exec` there are build errors. I've concluded that the only way to fix this is by altering a shit ton of source code. I tried for many hours to get this to work, and tried various fixes, but in the end I think the jump to .NET6 broke some things in this project. 
+Using `dotnet run` you're able to run and access the pages, however If you use `dotnet publish // dotnet exec` there are build errors. I've concluded that the only way to fix this is by altering a shit ton of source code. I tried for many hours to get this to work, and tried various fixes, but in the end I think the jump to .NET6 broke some things in this project. I think I easily have around 200+ failed builds for this project :) 
 
 
 ## Question 1:
