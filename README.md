@@ -87,12 +87,12 @@ kubectl apply -f C:\Users\dayzd\.kube\sqlserver-dep.yaml
 ```
 - Create an initial database called mssqllocaldb(thit is needed for the connection string in the application).
 ```
-CREATE DATABASE mssqllocaldb
+CREATE DATABASE mssqllocaldb;
 ```
 
 ### eShopOnWeb:
 
-- Fork the repo and make changes to /src/Web/appsettings.json & /src/PublicApi/appsettings.json . The changes were needed to point to the SQL-Server and to define URLs/Ports. The updated .json files look like this
+- I had to Fork the repo and make changes to /src/Web/appsettings.json & /src/PublicApi/appsettings.json . The changes were needed to point to the SQL-Server and to define URLs/Ports. The updated .json files look like this
 
 
 - Web app:
@@ -111,6 +111,9 @@ Api App:
 <img src="https://i.imgur.com/jCJmxNy.png" height="350" />
 
 The only issue is that using `dotnet run` only runs the application in an interactive-terminal session. Not useful for deploying.
+
+- Restoring and publishing the projects works flawlessly, and you're presented with nice .DLL files. Trying to deploy these files using `dotnet` or `dotnet exec` just does not want to work. The output is identical for both apps:
+<img src="https://i.imgur.com/hw9Sf2F.png" height="350" />
  
 
 
