@@ -120,7 +120,7 @@ The only issue is that using `dotnet run` only runs the application in an intera
 <img src="https://i.imgur.com/tRuxJXK.png" height="250" />
 
 
-I have tried every combination of launch parameters to try and fix this issue, I tried making a runttimeconfig.json file. But I just couldn't get this error to go away. It's like the appsettings.json file just gets lost in translation somehow.
+I have tried every combination of launch parameters to try and fix this issue, I tried making a runttimeconfig.json file. But I just couldn't get this error to go away. Something is bugging out, and it's not getting the values from the appsettings.json file
 
 ## Question 1:
 
@@ -140,10 +140,10 @@ This is the repo :D
 
 #### First off let me say that If I had to list all the problems I encountered I could write a book, this was my first time using Kubernetes and Jenkins so there was a lot of trail and error invloved. However after getting the hang of it and understanding the basics, most of my problems stemmed from the eShopOnWeb project. I spent probably 5%-10% of my time with the first 2 tasks and 90%-95 with the last one. 
 Some issues I encountered:
--
+- Installing dotnet tools
 
--
+- Connecting the app to SQLServer
 
--
+- 
 
--
+- Volotile storage/ Load-Shedding
