@@ -149,15 +149,46 @@ This is the repo :D
 
 
 
-
-
 ## Question 2:
+```
+{
+ "Janco":{
+  
+  "Info": {
+    "Alive": true,
+    "NeedJob": true,
+    "Country": "South Africa",
+    "City": "Pretoria",
+    "Age": 25 
+  },
+  
+  "Hobbies": {
+    "Gaming": true,
+    "Learning": true,
+    "Relaxing": true,
+    "Hang-Out": true
+  },
+  
+  "Skills": {
+    "Coding": "Decent",
+    "Talking": "Average",
+    "Driving": "Decent",
+    "Flying": "Warning"
+    }
+  }
+ }
+} 
+
+```
+
+
+## Question 3:
 
 #### By far the thing I found most intereting was learning how to build and use CI/CD pipelines, I understood the concept. But seeing just how simple it can be blew my mind away, I immediately started thinking about projects I could apply this to and I just fell in love. Going forward, anything that I put into some sort of release enviornment will absolutely run through jenkins + kube. 
 
 
 
-## Question 3:
+## Question 4:
 
 #### First off let me say that If I had to list all the problems I encountered I could write a book, this was my first time using Kubernetes and Jenkins so there was a lot of trail and error invloved. However after getting the hang of it and understanding the basics, most of my problems stemmed from the eShopOnWeb project. I spent probably 5%-10% of my time with the first 2 tasks and 90%-95 with the last one.
 
