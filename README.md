@@ -43,6 +43,7 @@ kubectl apply -f C:\Users\dayzd\.kube\simple-web-dep.yaml
 ## Task 2:
 
 ### Setting up Jenkins <-> Kubernetes was a fun challange and introduced me to some new concepts. The steps I took to get everything working were:
+#### Kubernetes:
 - Create and apply a jenkins-dep.yaml to kubernetes:
 ```
 kubectl apply -f C:\Users\dayzd\.kube\jenkins-dep.yaml
@@ -52,6 +53,7 @@ kubectl apply -f C:\Users\dayzd\.kube\jenkins-dep.yaml
 docker ps (get jenkins container ID)
 docker cp 8dacbc0cc5e4:/var/jenkins_home/secrets/initialAdminPassword C:\Users\dayzd\Downloads
 ```
+#### Jenkins:
 - After the initial setup of jenkins + user creation I added the kubernetes plugin and restarted.
 
 - Setting up kubernetes/jenkins agents I left most values on default, the only values I had to change were:
