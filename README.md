@@ -120,6 +120,8 @@ The only issue is that using `dotnet run` only runs the application in an intera
 <img src="https://i.imgur.com/tRuxJXK.png" height="250" />
 
 
+I have tried every combination of launch parameters to try and fix this issue, I tried making a runttimeconfig.json file. But I just couldn't get this error to go away. It's like the appsettings.json file just gets lost in translation somehow.
+
 ## Question 1:
 
 This is the repo :D
