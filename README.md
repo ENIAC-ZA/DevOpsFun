@@ -1,4 +1,4 @@
-# Sybrin - Janco's DevOps Test:
+# Janco's DevOps Test:
 
 ## Included in the readme is all the steps and filenames required to reproduce the tasks.
 
