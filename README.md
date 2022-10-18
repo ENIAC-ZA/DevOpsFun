@@ -152,18 +152,23 @@ This is the repo :D
 
 ## Question 2:
 
-#### By far the thing I found most intereting was learning how to build and use CI/CD pipelines, I understood the concept. But seeing just how simple it can be blew my mind away, I immediately started thinking about projects I could apply this to and I just fell in love.
+#### By far the thing I found most intereting was learning how to build and use CI/CD pipelines, I understood the concept. But seeing just how simple it can be blew my mind away, I immediately started thinking about projects I could apply this to and I just fell in love. Going forward, anything that I put into some sort of release enviornment will absolutely run through jenkins + kube. 
 
 
 
 ## Question 3:
 
-#### First off let me say that If I had to list all the problems I encountered I could write a book, this was my first time using Kubernetes and Jenkins so there was a lot of trail and error invloved. However after getting the hang of it and understanding the basics, most of my problems stemmed from the eShopOnWeb project. I spent probably 5%-10% of my time with the first 2 tasks and 90%-95 with the last one. 
-Some issues I encountered:
-- Installing dotnet tools
+#### First off let me say that If I had to list all the problems I encountered I could write a book, this was my first time using Kubernetes and Jenkins so there was a lot of trail and error invloved. However after getting the hang of it and understanding the basics, most of my problems stemmed from the eShopOnWeb project. I spent probably 5%-10% of my time with the first 2 tasks and 90%-95 with the last one.
 
-- Connecting the app to SQLServer
+With every single one of the issues I encountered I always tried Googl-ing/Youtub-ing and just debugging as much as possible, there is nothing special to my methods, and it's very seldom that I use a different method to get something working. 
 
-- 
+Some funky issues I encountered:
 
-- Volotile storage/ Load-Shedding
+- Installing dotnet tools: 
+For this I initially used `dotnet tool install  dotnet-ef --global` and I got an error, I spend hours debugging this only to realise that the I needed to do a local installation instead of a global one. Most of the fixes for the error I got pointed me in the complete opposite direction.
+
+- Connecting the app to SQLServer: Setting up the enviornment for the apps was super easy, actually getting them to connect was a pain in the butt. The problem stemmed from a super case sensitive connect string that looks like this : `Server=10.104.12.34,1433\\SQL2022;Database=mssqllocaldb;User Id=SA;Password=test123-;Initial Catalog=Microsoft.eShopOnWeb.CatalogDb;` I found out that
+
+- Actually getting `dotnet run` to run the application:
+
+- Volotile storage/ Load-Shedding:
