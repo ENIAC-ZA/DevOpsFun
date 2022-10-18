@@ -90,10 +90,10 @@ kubectl apply -f C:\Users\dayzd\.kube\sqlserver-dep.yaml
 - Fork the repo and make changes to /src/Web/appsettings.json & /src/PublicApi/appsettings.json . The changes were needed to point to the SQL-Server and to define URLs/Ports. The updated .json files look like this
 
 - Web app:
-<img src="https://i.imgur.com/cLAlBPC.png" height="150" />
+<img src="https://i.imgur.com/cLAlBPC.png" height="250" />
 
 - Api:
-<img src="https://i.imgur.com/9ZtkKco.png" height="150" />
+<img src="https://i.imgur.com/9ZtkKco.png" height="250" />
 
 
 ## Question 1:
