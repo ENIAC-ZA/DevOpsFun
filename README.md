@@ -95,6 +95,10 @@ CREATE DATABASE mssqllocaldb;
 
 ### eShopOnWeb:
 
+- Create the services for the apps in kubernetes:
+```
+kubectl apply C:\Users\dayzd\.kube/eShop-services.yaml
+```
 - I had to Fork the repo and make changes to /src/Web/appsettings.json & /src/PublicApi/appsettings.json . The changes were needed to point to the SQL-Server and to define URLs/Ports. The updated .json files look like this
 
 
