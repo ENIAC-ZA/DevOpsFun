@@ -134,6 +134,13 @@ The only issue is that using `dotnet run` only runs the application in an intera
 I have tried every combination of launch parameters to try and fix this issue, I tried making a runttimeconfig.json file. But I just couldn't get this error to go away. Something is bugging out, and it's not getting the values from the appsettings.json file
 
 ### The complete pipe I built can be found at 'eShopp-jenkins-pipe.yaml' and should work flawlessly if the `System.InvalidOperationException` issue could be solved.
+quick summary:
+- SQL-Server works.
+- Both apps restore.
+- Both apps connect to the database, tables get created.
+- Both apps publish.
+- Both apps "run". `dotnet run`
+- No apps "deploy". `dotnet` // `dotnet exec`
 
 ## Question 1:
 
