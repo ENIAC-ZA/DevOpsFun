@@ -95,8 +95,8 @@ CREATE DATABASE mssqllocaldb;
 
 ### eShopOnWeb:
 
-- I had to Fork the repo and make changes to `/src/Web/appsettings.json` & `/src/PublicApi/appsettings.json`. The changes were needed to point to the SQL-Server and to define URLs/Ports. The updated .json files look like this
-repo - https://github.com/ENIAC-ZA/eShopOnWeb
+- I had to Fork the repo(https://github.com/ENIAC-ZA/eShopOnWeb) and make changes to `/src/Web/appsettings.json` & `/src/PublicApi/appsettings.json`. The changes were needed to point to the SQL-Server and to define URLs/Ports. The updated .json files look like this
+
 
 
 - Web app:
