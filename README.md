@@ -62,7 +62,7 @@ Podlabel
 |-Key   ---> jenkins
 |-Value ---> executor
 ```
-![jenkins1] https://imgur.com/NwPyqfk
+[<img src="https://i.imgur.com/NwPyqfk.png" height="100" />]
 
 -I also made sure to decrease the jenkins default agents to 0.
 
