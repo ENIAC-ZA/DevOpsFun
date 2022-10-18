@@ -16,10 +16,17 @@ pipeline {
                   containerPort: 5001
                 - name: web-http-port
                   containerPort: 5000
+          containers:
+          - name: api
+            image: mcr.microsoft.com/dotnet/sdk:6.0
+            tty: true
+            ports:
                 - name: api-http-port
                   containerPort: 5098
                 - name: api-https-port
                   containerPort: 5099
+                  
+           
         '''
     }
   }
@@ -28,19 +35,13 @@ pipeline {
     
       stage ('Clean workspace') {
          steps{
-             
-            container('web') {
             cleanWs()
-            }
           }
         }
       
     stage('Clone Repo') {
       steps {
-          
-        container('web') {
          sh 'git clone https://github.com/ENIAC-ZA/eShopOnWeb.git'
-        }
       }
     }
     
@@ -49,10 +50,12 @@ pipeline {
           
         container('web') {
           sh 'dotnet restore ./eShopOnWeb/src/Web/Web.csproj'
-          sh 'dotnet restore ./eShopOnWeb/src/PublicApi/PublicApi.csproj'
           sh 'dotnet tool install --tool-path ~/bin  dotnet-ef '
           sh '~/bin/dotnet-ef database update -c catalogcontext -p ./eShopOnWeb/src/Infrastructure/Infrastructure.csproj -s ./eShopOnWeb/src/Web'
           sh '~/bin/dotnet-ef database update -c appidentitydbcontext -p ./eShopOnWeb/src/Infrastructure/Infrastructure.csproj -s ./eShopOnWeb/src/Web'
+        }
+        container('api') {
+          sh 'dotnet restore ./eShopOnWeb/src/PublicApi/PublicApi.csproj'
         }
       }
     }
@@ -62,6 +65,8 @@ pipeline {
       steps {
         container('web') {
           sh 'dotnet publish -c Release ./eShopOnWeb/src/Web/Web.csproj -o ./eShopOnWeb/src/Web'
+        }
+        container('api') {
           sh 'dotnet publish -c Release ./eShopOnWeb/src/PublicApi/PublicApi.csproj -o ./eShopOnWeb/src/PublicApi'
         }
       }
@@ -70,10 +75,12 @@ pipeline {
     stage('Deploy Project') {
       steps {
           
+        container('web') {
+          sh 'dotnet exec ./eShopOnWeb/src/Web/Web.dll'
+        }
         container('api') {
           sh 'dotnet exec ./eShopOnWeb/src/PublicApi/bin/Release/net6.0/PublicApi.dll'
-          sh 'dotnet exec ./eShopOnWeb/src/Web/Web.dll'
-        }  
+        }
       }
     }
     
