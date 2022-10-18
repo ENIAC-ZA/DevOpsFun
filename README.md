@@ -70,7 +70,8 @@ Podlabel
 
 
 ## Task 3:
-
+### This task taught me a lot, I spent most of my time debugging and learning.
+Using `dotnet run` you're able to run and access the pages, however If you use `dotnet publish + dotnet exec` there is a build error. I've spend many hours trying to get this to work without having to change heaps of source code but this just was not feasible. 
 
 
 ## Question 1:
