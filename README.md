@@ -88,7 +88,8 @@ By far the thing I found most intereting was learning how to build and use CI/CD
 
 
 ## Question 3:
-First off let me say that If I had to list all the problems I encountered I could write a book, this was my first time using kubernetes and jenkins so there was a lot of trail and error invloved. However after getting the hang of it and understanding the basics, most of my problems stemmed from the eShopOnWeb project. I spent probably 5%-10% of my time with the first 2 tasks and 90%-95 with the last one. 
+
+### First off let me say that If I had to list all the problems I encountered I could write a book, this was my first time using Kubernetes and Jenkins so there was a lot of trail and error invloved. However after getting the hang of it and understanding the basics, most of my problems stemmed from the eShopOnWeb project. I spent probably 5%-10% of my time with the first 2 tasks and 90%-95 with the last one. 
 Some issues I encountered:
 -
 
