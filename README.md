@@ -202,7 +202,7 @@ For this I initially used `dotnet tool install  dotnet-ef --global` and I got an
 
 - Connecting the app to SQLServer: 
 
-Setting up the enviornment for the apps was super easy, actually getting them to connect was a pain in the butt. The problem stemmed from a super case sensitive connect string that looks like this : `Server=10.104.12.34,1433\\SQL2022;Database=mssqllocaldb;User Id=SA;Password=test123-;Initial Catalog=Microsoft.eShopOnWeb.CatalogDb;` If you mess up the order, or leave out ANYTHING It just would not connect.
+Setting up the enviornment for the apps was super easy, actually getting them to connect was a pain in the butt. The problem stemmed from a VERY case sensitive connection string that looks like this : `Server=10.104.12.34,1433\\SQL2022;Database=mssqllocaldb;User Id=SA;Password=test123-;Initial Catalog=Microsoft.eShopOnWeb.CatalogDb;` If you mess up the order, or leave out ANYTHING It just would not connect.
 
 - Actually getting `dotnet run` to run the application: 
 
