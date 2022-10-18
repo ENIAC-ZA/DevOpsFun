@@ -4,6 +4,7 @@
 
 
 ## Task 1:
+
 ### By far the easiest of the tasks, this was done mostly through a GUI, and verification of all the services was done through the command line.
 Steps:
 
@@ -40,6 +41,7 @@ kubectl apply -f C:\Users\dayzd\.kube\simple-web-dep.yaml
 ```
 
 ## Task 2:
+
 ### Setting up Jenkins <-> Kubernetes was a fun challange and introduced me to some new concepts. The steps I took to get everything working were:
 - Create and apply a jenkins-dep.yaml to kubernetes:
 ```
@@ -77,6 +79,7 @@ Using `dotnet run` you're able to run both apps, however If you use `dotnet publ
 
 
 ## Question 1:
+
 This is the repo :D
 
 
@@ -84,7 +87,8 @@ This is the repo :D
 
 
 ## Question 2:
-By far the thing I found most intereting was learning how to build and use CI/CD pipelines, I understood the concept. But seeing just how simple it can be blew my mind away, I immediately started thinking about projects I could apply this to and I just fell in love.
+
+#### By far the thing I found most intereting was learning how to build and use CI/CD pipelines, I understood the concept. But seeing just how simple it can be blew my mind away, I immediately started thinking about projects I could apply this to and I just fell in love.
 
 
 
