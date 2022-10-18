@@ -85,7 +85,10 @@ Using `dotnet run` you're able to run both apps, however If you use `dotnet publ
 ```
 kubectl apply -f C:\Users\dayzd\.kube\sqlserver-dep.yaml
 ```
-- Create an initial database called mssqllocaldb.
+- Create an initial database called mssqllocaldb(thit is needed for the connection string in the application).
+```
+CREATE DATABASE mssqllocaldb
+```
 
 ### eShopOnWeb:
 
