@@ -63,7 +63,7 @@ Podlabel
 |-Value ---> executor
 ```
 <img src="https://i.imgur.com/NwPyqfk.png" height="300" />
-<img src="https://i.imgur.com/V5iMLkE.png" height="300" />
+<img src="https://i.imgur.com/V5iMLkE.png" height="250" />
 -I also made sure to decrease the jenkins default agents to 0.
 
 -Jenkins was now ready for deployments.
