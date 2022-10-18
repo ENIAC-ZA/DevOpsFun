@@ -17,7 +17,7 @@ Steps:
 
 
 #### Kubernetes:
-- After kubernetes is installed I had access to the 'kubectl' commands and verified that everything was working,  some of the commands I used were:
+- After kubernetes is installed I had access to the `kubectl` command set and verified that everything was working,  some of the commands I used were:
 
 ```
 kubectl get nodes
