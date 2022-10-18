@@ -8,6 +8,7 @@
 ### By far the easiest of the tasks, this was done mostly through a GUI, and verification of all the services was done through the command line.
 Steps:
 
+#### Docker:
 - Install docker from - https://docs.docker.com/desktop/install/windows-install/
 
 - After installation enable WSL 2 instead of Hyper-V/nothing.
@@ -15,7 +16,7 @@ Steps:
 - Install kubernetes from within docker settings menu.
 
 
-
+#### Kubernetes:
 - After kubernetes is installed I had access to the 'kubectl' commands and verified that everything was working,  some of the commands I used were:
 
 ```
