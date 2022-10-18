@@ -116,7 +116,7 @@ Api App:
 The only issue is that using `dotnet run` only runs the application in an interactive-terminal session. Not useful for deploying.
 
 - Restoring and publishing the projects works flawlessly, and you're presented with nice .DLL files. Trying to deploy these files using `dotnet` or `dotnet exec` just does not want to work. The output is identical for both apps:
-<img src="https://i.imgur.com/hw9Sf2F.png" height="150" />
+<img src="https://i.imgur.com/hw9Sf2F.png" height="100" />
 
 - Going to the line that throws the error you're presented with this:
 
