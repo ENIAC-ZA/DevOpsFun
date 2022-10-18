@@ -14,11 +14,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: simple-web
+      app: simple-web
   template:
     metadata:
       labels:
-        k8s-app: simple-web
+        app: simple-web
     spec:
       containers:
       - name: simple-web
@@ -42,7 +42,7 @@ spec:
       targetPort: 80
       nodePort: 31570
   selector:
-    k8s-app: simple-web
+    app: simple-web
   type: LoadBalancer
   sessionAffinity: None
   externalTrafficPolicy: Cluster
