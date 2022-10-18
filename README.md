@@ -160,15 +160,15 @@ This is the repo :D
 
 #### First off let me say that If I had to list all the problems I encountered I could write a book, this was my first time using Kubernetes and Jenkins so there was a lot of trail and error invloved. However after getting the hang of it and understanding the basics, most of my problems stemmed from the eShopOnWeb project. I spent probably 5%-10% of my time with the first 2 tasks and 90%-95 with the last one.
 
-With every single one of the issues I encountered I always tried Googl-ing/Youtub-ing and just debugging as much as possible, there is nothing special to my methods, and it's very seldom that I use a different method to get something working. 
+With every single one of the issues I encountered I always tried Googl-ing/Youtub-ing and just debugging as much as possible, there is nothing special to my methods, and it's very seldom that I use a different method to get something working. The internet is my friend, and it's the only reason I got any of this working :D
 
 Some funky issues I encountered:
 
 - Installing dotnet tools: 
 For this I initially used `dotnet tool install  dotnet-ef --global` and I got an error, I spend hours debugging this only to realise that the I needed to do a local installation instead of a global one. Most of the fixes for the error I got pointed me in the complete opposite direction.
 
-- Connecting the app to SQLServer: Setting up the enviornment for the apps was super easy, actually getting them to connect was a pain in the butt. The problem stemmed from a super case sensitive connect string that looks like this : `Server=10.104.12.34,1433\\SQL2022;Database=mssqllocaldb;User Id=SA;Password=test123-;Initial Catalog=Microsoft.eShopOnWeb.CatalogDb;` I found out that
+- Connecting the app to SQLServer: Setting up the enviornment for the apps was super easy, actually getting them to connect was a pain in the butt. The problem stemmed from a super case sensitive connect string that looks like this : `Server=10.104.12.34,1433\\SQL2022;Database=mssqllocaldb;User Id=SA;Password=test123-;Initial Catalog=Microsoft.eShopOnWeb.CatalogDb;` If you mess up the order, or leave out ANYTHING It just would not connect.
 
-- Actually getting `dotnet run` to run the application:
+- Actually getting `dotnet run` to run the application: This was actually just a weird one for me, the apps would not run witout me having to delete the `wwwroot` folder from each app's directory. From what I've found out, this is due to `dotnet run` not wanting to replace files, even if they are created at runtime.
 
-- Volotile storage/ Load-Shedding:
+- Volotile storage/ Load-Shedding: This is the one thing that kept me on edge at all times, I never set up anything with 'persistent volume'//'persistent volume claims', this meant that every time I lost power I had to do a whole bunch of reconfiguring. I tried making a persistent volume and a persistent volume claim, gave my containers admin rights but they consistently failed with `insufficient rights`. Instead of wasting my time any further I decided to just focus on the tasks and reconfigure everything when the power goes out :( .
