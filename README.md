@@ -76,8 +76,10 @@ Jenkins was now ready for deployments.
 
 ### This task taught me a lot, I spent most of my time debugging and learning.
 Using `dotnet run` you're able to run both apps, however If you use `dotnet publish // dotnet exec` there are build errors. I've concluded that the only way to fix this is by altering a shit ton of source code. I tried for many hours to get this to work, and tried various fixes, but in the end I think the jump to .NET6 broke some things in this project. I think I easily have around 200+ failed builds for this project :)
+
 #### The steps I took:
-#### SQL Server:
+
+### SQL Server:
 
 - Create and apply sqlserver-dep.yaml to kubernetes, this has the deployment and services included as well as a custom password for the server.
 ```
@@ -85,7 +87,7 @@ kubectl apply -f C:\Users\dayzd\.kube\sqlserver-dep.yaml
 ```
 - Create an initial database called mssqllocaldb.
 
-#### eShopOnWeb:
+### eShopOnWeb:
 
 - Fork the repo and make changes to /src/Web/appsettings.json & /src/PublicApi/appsettings.json . The changes were needed to point to the SQL-Server and to define URLs/Ports. The updated .json files look like this
 
