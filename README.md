@@ -71,6 +71,7 @@ Jenkins was now ready for deployments.
 
 
 ## Task 3:
+
 ### This task taught me a lot, I spent most of my time debugging and learning.
 Using `dotnet run` you're able to run both apps, however If you use `dotnet publish // dotnet exec` there are build errors. I've concluded that the only way to fix this is by altering a shit ton of source code. I tried for many hours to get this to work, and tried various fixes, but in the end I think the jump to .NET6 broke some things in this project. I think I easily have around 200+ failed builds for this project :) 
 
@@ -89,7 +90,7 @@ By far the thing I found most intereting was learning how to build and use CI/CD
 
 ## Question 3:
 
-### First off let me say that If I had to list all the problems I encountered I could write a book, this was my first time using Kubernetes and Jenkins so there was a lot of trail and error invloved. However after getting the hang of it and understanding the basics, most of my problems stemmed from the eShopOnWeb project. I spent probably 5%-10% of my time with the first 2 tasks and 90%-95 with the last one. 
+#### First off let me say that If I had to list all the problems I encountered I could write a book, this was my first time using Kubernetes and Jenkins so there was a lot of trail and error invloved. However after getting the hang of it and understanding the basics, most of my problems stemmed from the eShopOnWeb project. I spent probably 5%-10% of my time with the first 2 tasks and 90%-95 with the last one. 
 Some issues I encountered:
 -
 
