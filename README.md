@@ -43,7 +43,7 @@ kubectl apply -f C:\Users\dayzd\.kube\simple-web-dep.yaml
 
 ## Task 2:
 
-### Setting up Jenkins <-> Kubernetes was a fun challange and introduced me to some new concepts. The steps I took to get everything working were:
+### Setting up Jenkins <-> Kubernetes was a fun challenge and introduced me to some new concepts. The steps I took to get everything working were:
 #### Kubernetes:
 - Create and apply a jenkins-dep.yaml to kubernetes:
 ```
@@ -184,15 +184,15 @@ This is the repo :D
 
 ## Question 3:
 
-#### By far the thing I found most intereting was learning how to build and use CI/CD pipelines, I understood the concept. But seeing just how simple it can be blew my mind away, I immediately started thinking about projects I could apply this to and I just fell in love. Going forward, anything that I put into some sort of release enviornment will absolutely run through jenkins + kube. 
+#### By far the thing I found most interesting was learning how to build and use CI/CD pipelines, I understood the concept. But seeing just how simple it can be blew my mind away, I immediately started thinking about projects I could apply this to and I just fell in love. Going forward, anything that I put into some sort of release environment will absolutely run through Jenkins + Kube. 
 
 
 
 ## Question 4:
 
-#### First off let me say that If I had to list all the problems I encountered I could write a book, this was my first time using Kubernetes and Jenkins so there was a lot of trail and error invloved. However after getting the hang of it and understanding the basics, most of my problems stemmed from the eShopOnWeb project. I spent probably 5%-10% of my time with the first 2 tasks and 90%-95 with the last one.
+#### First off let me say that If I had to list all the problems I encountered I could write a book, this was my first time using Kubernetes and Jenkins so there was a lot of trial and error involved. However after getting the hang of it and understanding the basics, most of my problems stemmed from the eShopOnWeb project. I spent probably 5%-10% of my time with the first 2 tasks and 90%-95 with the last one.
 
-With every single one of the issues I encountered I always tried Googl-ing/Youtub-ing and just debugging as much as possible, there is nothing special to my methods, and it's very seldom that I use a different method to get something working. The internet is my friend, and it's the only reason I got any of this working :D
+With every single one of the issues I encountered I always tried Googling/Youtubing and just debugging as much as possible, there is nothing special to my methods, and it's very seldom that I use a different method to get something working. The internet is my friend, and it's the only reason I got any of this working :D
 
 Some funky issues I encountered:
 
@@ -202,8 +202,8 @@ For this I initially used `dotnet tool install  dotnet-ef --global` and I got an
 
 - Connecting the app to SQLServer: 
 
-Setting up the enviornment for the apps was super easy, actually getting them to connect was a pain in the butt. The problem stemmed from a VERY case sensitive connection string that looks like this : `Server=10.104.12.34,1433\\SQL2022;Database=mssqllocaldb;User Id=SA;Password=test123-;Initial Catalog=Microsoft.eShopOnWeb.CatalogDb;` If you mess up the order, or leave out ANYTHING It just would not connect.
+Setting up the environment for the apps was super easy, getting them to connect was a pain in the butt. The problem stemmed from a VERY case sensitive connection string that looks like this : `Server=10.104.12.34,1433\\SQL2022;Database=mssqllocaldb;User Id=SA;Password=test123-;Initial Catalog=Microsoft.eShopOnWeb.CatalogDb;` If you mess up the order, or leave out ANYTHING It just would not connect.
 
 - Getting `dotnet run` to run the application: 
 
-This was actually just a weird one for me, the apps would not run witout me having to delete the `wwwroot` folder from each app's directory. From what I've found out, this is due to `dotnet run` not wanting to replace files, even if they are created at runtime.
+This was just a weird one for me, the apps would not run without me having to delete the `wwwroot` folder from each app's directory. From what I've found out, this is due to `dotnet run` not wanting to replace files, even if they are created at runtime.
