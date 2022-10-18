@@ -204,7 +204,7 @@ For this I initially used `dotnet tool install  dotnet-ef --global` and I got an
 
 Setting up the enviornment for the apps was super easy, actually getting them to connect was a pain in the butt. The problem stemmed from a VERY case sensitive connection string that looks like this : `Server=10.104.12.34,1433\\SQL2022;Database=mssqllocaldb;User Id=SA;Password=test123-;Initial Catalog=Microsoft.eShopOnWeb.CatalogDb;` If you mess up the order, or leave out ANYTHING It just would not connect.
 
-- Actually getting `dotnet run` to run the application: 
+- Getting `dotnet run` to run the application: 
 
 This was actually just a weird one for me, the apps would not run witout me having to delete the `wwwroot` folder from each app's directory. From what I've found out, this is due to `dotnet run` not wanting to replace files, even if they are created at runtime.
 
