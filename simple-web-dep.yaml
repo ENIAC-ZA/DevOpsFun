@@ -44,11 +44,4 @@ spec:
   selector:
     app: simple-web
   type: LoadBalancer
-  sessionAffinity: None
-  externalTrafficPolicy: Cluster
-  ipFamilies:
-    - IPv4
-  ipFamilyPolicy: SingleStack
-  allocateLoadBalancerNodePorts: true
-  internalTrafficPolicy: Cluster
 
