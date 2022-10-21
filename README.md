@@ -149,6 +149,9 @@ quick summary:
 - Both apps "run". `dotnet run`
 - No apps "deploy". `dotnet` // `dotnet exec`
 
+
+# Amendment 21/10/2022 - After further research I have found a solution to my problem (https://stackoverflow.com/questions/37858312/dotnet-publish-doesn%C2%B4t-publish-correct-appsettings-env-environmentname-json).
+
 ## Question 1:
 
 This is the repo :D
