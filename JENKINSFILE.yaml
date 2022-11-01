@@ -1,90 +1,11 @@
-pipeline {
-  agent {
-    kubernetes {
-      yaml '''
-        apiVersion: v1
-        kind: Pod
-        matchLabels:
-          app: e-shop-web
-        spec:
-          containers:
-          - name: web
-            image: mcr.microsoft.com/dotnet/sdk:6.0
-            tty: true
-            ports:
-                - name: web-https-port
-                  containerPort: 5001
-                - name: web-http-port
-                  containerPort: 5000
-          containers:
-          - name: api
-            image: mcr.microsoft.com/dotnet/sdk:6.0
-            tty: true
-            ports:
-                - name: api-http-port
-                  containerPort: 5098
-                - name: api-https-port
-                  containerPort: 5099
-                  
-           
-        '''
+node{
+stage('Apply Kubernetes files') {
+    withKubeConfig([credentialsId: 'admin-user', serverUrl: 'https://10.96.0.1:443']) {
+	  sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
+    sh 'chmod u+x ./kubectl'
+    sh './kubectl apply -f https://raw.githubusercontent.com/ENIAC-ZA/DevOpsFun/main/e-sql-dep.yaml'
+	  sh './kubectl apply -f https://raw.githubusercontent.com/ENIAC-ZA/DevOpsFun/main/e-web-dep.yaml'
+	  sh './kubectl apply -f https://raw.githubusercontent.com/ENIAC-ZA/DevOpsFun/main/e-api-dep.yaml' 
     }
-  }
-  
-  stages {
-    
-      stage ('Clean workspace') {
-         steps{
-            cleanWs()
-          }
-        }
-      
-    stage('Clone Repo') {
-      steps {
-         sh 'git clone https://github.com/ENIAC-ZA/eShopOnWeb.git'
-      }
-    }
-    
-    stage('Restore Project') {
-      steps {
-          
-        container('web') {
-          sh 'dotnet restore ./eShopOnWeb/src/Web/Web.csproj'
-          sh 'dotnet tool install --tool-path ~/bin  dotnet-ef '
-          sh '~/bin/dotnet-ef database update -c catalogcontext -p ./eShopOnWeb/src/Infrastructure/Infrastructure.csproj -s ./eShopOnWeb/src/Web'
-          sh '~/bin/dotnet-ef database update -c appidentitydbcontext -p ./eShopOnWeb/src/Infrastructure/Infrastructure.csproj -s ./eShopOnWeb/src/Web'
-        }
-        container('api') {
-          sh 'dotnet restore ./eShopOnWeb/src/PublicApi/PublicApi.csproj'
-        }
-      }
-    }
-    
-    
-    stage('Publish Project') {
-      steps {
-        container('web') {
-          sh 'dotnet publish -c Release ./eShopOnWeb/src/Web/Web.csproj -o ./eShopOnWeb/src/Web'
-        }
-        container('api') {
-          sh 'dotnet publish -c Release ./eShopOnWeb/src/PublicApi/PublicApi.csproj -o ./eShopOnWeb/src/PublicApi'
-        }
-      }
-    }
-    
-    stage('Deploy Project') {
-      steps {
-          
-        container('web') {
-          sh 'dotnet exec ./eShopOnWeb/src/Web/Web.dll'
-        }
-        container('api') {
-          sh 'dotnet exec ./eShopOnWeb/src/PublicApi/bin/Release/net6.0/PublicApi.dll'
-        }
-      }
-    }
-    
-    
-    
-  }
+	}
 }
