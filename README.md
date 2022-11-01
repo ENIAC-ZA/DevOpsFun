@@ -119,7 +119,7 @@ stage('Apply Kubernetes files') {
 	}
 }
 ```
-Output after deployment:
+localhost:5106 Output after deployment:
 
 <img src="https://i.imgur.com/JxI5FTR.png" height="250" />
 Success!
