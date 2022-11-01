@@ -98,11 +98,26 @@ docker push eniacza/eshopweb:latest
 docker push eniacza/eshopsql:latest
 ```
 
-Next I had to create 3 deployment files for the 3 images, I had to add configMaps to the API and the Webapp to point them to eachother/database. Just to make sure the deployments work I manually imported and deleted them from kubernetes before moving on to jenkins.
+Next I had to create 3 deployment files for the 3 images, I added configMaps to the API and the Webapp to point them to eachother/database. Just to make sure the deployments work I manually imported and deleted them from kubernetes before moving on to jenkins.
 ```
 kubectl apply -f C:\Users\dayzd\.kube\e-sql-dep.yaml
 kubectl apply -f C:\Users\dayzd\.kube\e-web-dep.yaml
 kubectl apply -f C:\Users\dayzd\.kube\e-api-dep.yaml
+```
+
+After verifying that all 3 deployments work, I could move on to automating this through Jenkins. I uploaded all 3 deployment files to github, and used the Kubernetes CLI tool to deploy them. This works perfectly and all services are up and running within 30 seconds-ish.
+```
+node{
+stage('Apply Kubernetes files') {
+    withKubeConfig([credentialsId: 'admin-user', serverUrl: 'https://10.96.0.1:443']) {
+	  sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
+      sh 'chmod u+x ./kubectl'
+      sh './kubectl apply -f https://raw.githubusercontent.com/ENIAC-ZA/DevOpsFun/main/e-sql-dep.yaml'
+	  sh './kubectl apply -f https://raw.githubusercontent.com/ENIAC-ZA/DevOpsFun/main/e-web-dep.yaml'
+	  sh './kubectl apply -f https://raw.githubusercontent.com/ENIAC-ZA/DevOpsFun/main/e-api-dep.yaml' 
+    }
+	}
+}
 ```
 
 
