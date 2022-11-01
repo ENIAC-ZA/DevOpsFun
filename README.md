@@ -182,10 +182,12 @@ With every single one of the issues I encountered I always tried Googling/Youtub
 Some funky issues I encountered:
 
 - Figuring out how to use deploy to kubernetes from Jenkins:
+
 This makes me very sad, but I spent a lot of time figuring out the process of deploying through Jenkins. Most of the tutorials I watched implement pipelines with multi-stage designs which is just not how you go about deploying this. After some late hours I finally realised that I could in fact run `kubectl` inside of a node and my eyes opened for the first time. (Thank you Kubernetes-CLI!) 
 
 
 - ConfigMaps: 
+
 I struggled getting my configMaps to actually load into the correct directory, my VolumeMounts looked like this: 
 ```
 volumeMounts:
