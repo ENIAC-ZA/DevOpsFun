@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eshopsql
+  namespace: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eshopsql
+  template:
+    metadata:
+      labels:
+        app: eshopsql
+    spec:
+      containers:
+      - name: mssql
+        image: eniacza/eshopsql:latest
+        ports:
+          - name: server-port
+            containerPort: 1433
+        env:
+        - name: MSSQL_PID
+          value: "Developer"
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: MSSQL_SA_PASSWORD
+          value: test1234-
+        volumeMounts:
+          - name: eweb-vol
+            mountPath: /var/eshop/sql
+      volumes:
+        - name: eweb-vol
+          emptyDir: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: eshop-service-sql
+  namespace: jenkins
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 1433
+      targetPort: 1433
+  selector:
+    app: eshopsql
+  clusterIP: 10.102.128.24
+  clusterIPs:
+    - 10.102.128.24
+

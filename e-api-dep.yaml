@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: appsettings-api
+  namespace: jenkins
+data:
+  appsettings.json: |-
+    {
+        "baseUrls": {
+            "apiBase": "http://localhost:5200/api/",
+            "webBase": "http://10.110.61.136:5106/"
+            },
+        "ConnectionStrings": {
+            "CatalogConnection": "Server=10.102.128.24,1433\\SQL2022;User Id=SA;Password=test1234-;Initial Catalog=Microsoft.eShopOnWeb.CatalogDb;",
+            "IdentityConnection": "Server=10.102.128.24,1433\\SQL2022;User Id=SA;Password=test1234-;Initial Catalog=Microsoft.eShopOnWeb.Identity;"
+            },
+        "CatalogBaseUrl": "",
+        "Logging": {
+            "IncludeScopes": "false",
+            "LogLevel": {
+                "Default": "Warning",
+                "Microsoft": "Warning",
+                "System": "Warning"
+            }
+        },
+    "AllowedHosts": "*"
+    }
+
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eshopapi
+  namespace: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eshopapi
+  template:
+    metadata:
+      labels:
+        app: eshopapi
+    spec:
+      containers:
+      - name: eshopapi
+        image: eniacza/eshopapi:latest
+        ports:
+          - name: http-port
+            containerPort: 80
+          - name: api-port
+            containerPort: 5200
+        volumeMounts:
+          - name: apiappsettings-volume
+            mountPath: /app/appsettings.json
+            subPath: appsettings.json
+      volumes:
+        - name: apiappsettings-volume
+          configMap:
+            name: appsettings-api
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: eshop-service-api
+  namespace: jenkins
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 5200
+      targetPort: 5200
+  selector:
+    app: eshopapi
+  clusterIP: 10.106.108.71
+  clusterIPs:
+    - 10.106.108.71
+
+---
+
+    
+    
+
+
