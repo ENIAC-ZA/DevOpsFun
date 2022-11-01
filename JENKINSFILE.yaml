@@ -2,8 +2,8 @@ node{
 stage('Apply Kubernetes files') {
     withKubeConfig([credentialsId: 'admin-user', serverUrl: 'https://10.96.0.1:443']) {
 	  sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
-    sh 'chmod u+x ./kubectl'
-    sh './kubectl apply -f https://raw.githubusercontent.com/ENIAC-ZA/DevOpsFun/main/e-sql-dep.yaml'
+          sh 'chmod u+x ./kubectl'
+          sh './kubectl apply -f https://raw.githubusercontent.com/ENIAC-ZA/DevOpsFun/main/e-sql-dep.yaml'
 	  sh './kubectl apply -f https://raw.githubusercontent.com/ENIAC-ZA/DevOpsFun/main/e-web-dep.yaml'
 	  sh './kubectl apply -f https://raw.githubusercontent.com/ENIAC-ZA/DevOpsFun/main/e-api-dep.yaml' 
     }
