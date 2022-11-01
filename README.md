@@ -81,29 +81,29 @@ edit 01/11/2022 - I added the kubernetes CLI addon to be able to deploy to kuber
 
 Using my newfound knowledge, I was able to figure out where I went wrong first time round. Here are the steps I took to correctly deploy the e-ShopOnWeb application.
 First I had to clone the repo and run docker-compose to create the images. Afterwards I pushed the images to dockerhub, and started working on the deployment files.
-'''
+```
 docker compose build
-'''
-'''
+```
+```
 docker ps -a 
-'''
-'''
+```
+```
 docker tag eshoppublicapi eniacza/eshopapi:latest
 docker tag eshopwebmvc eniacza/eshopweb:latest
 docker tag mcr.microsoft.com/azure-sql-edge eniacza/eshopsql:latest
-'''
-'''
+```
+```
 docker push eniacza/eshopapi:latest
 docker push eniacza/eshopweb:latest
 docker push eniacza/eshopsql:latest
-'''
+```
 
 Next I had to create 3 deployment files for the 3 images, I had to add configMaps to the API and the Webapp to point them to eachother/database. Just to make sure the deployments work I manually imported and deleted them from kubernetes before moving on to jenkins.
-'''
+```
 kubectl apply -f C:\Users\dayzd\.kube\e-sql-dep.yaml
 kubectl apply -f C:\Users\dayzd\.kube\e-web-dep.yaml
 kubectl apply -f C:\Users\dayzd\.kube\e-api-dep.yaml
-'''
+```
 
 
 ## Question 1:
