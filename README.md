@@ -119,6 +119,12 @@ stage('Apply Kubernetes files') {
 	}
 }
 ```
+Output after deployment:
+
+<img src="https://i.imgur.com/JxI5FTR.png" height="250" />
+Success!
+
+#####
 Sadly after many hours, I conceded that the API doesn't interact with the web-app as intended, nor is it accessible. I speculate that this is because the original dockerfile of the API wasn't intended to be used in this fashion. Running `docker-compose UP` on the original images I found that I still couldn't access the API however it interacted with the web app just fine. I tried to replicate this in my deployments, without success.
 
 
