@@ -74,80 +74,36 @@ Podlabel
 
 Jenkins was now ready for deployments.
 
+edit 01/11/2022 - I added the kubernetes CLI addon to be able to deploy to kubernetes.
 
 ## Task 3:
+### No More Forks :)
 
-### This task taught me a lot, I spent most of my time debugging and learning.
-Using `dotnet run` you're able to run both apps, however If you use `dotnet publish // dotnet exec` It resulted in errors. I've concluded that the only way to fix this is by altering a ton of source code. I tried for many hours to get this to work, and tried various fixes, but in the end I think the jump to .NET6 broke some things in this project. I think I easily have around 200+ failed builds for this project :)
+Using my newfound knowledge, I was able to figure out where I went wrong first time round. Here are the steps I took to correctly deploy the e-ShopOnWeb application.
+First I had to clone the repo and run docker-compose to create the images. Afterwards I pushed the images to dockerhub, and started working on the deployment files.
+'''
+docker compose build
+'''
+'''
+docker ps -a 
+'''
+'''
+docker tag eshoppublicapi eniacza/eshopapi:latest
+docker tag eshopwebmvc eniacza/eshopweb:latest
+docker tag mcr.microsoft.com/azure-sql-edge eniacza/eshopsql:latest
+'''
+'''
+docker push eniacza/eshopapi:latest
+docker push eniacza/eshopweb:latest
+docker push eniacza/eshopsql:latest
+'''
 
-#### The steps I took:
-
-### SQL Server:
-
-- Create and apply sqlserver-dep.yaml to kubernetes, this has the deployment and services included as well as a custom password for the server.
-```
-kubectl apply -f C:\Users\dayzd\.kube\sqlserver-dep.yaml
-```
-- Create an initial database called mssqllocaldb(thit is needed for the connection string in the application).
-```
-CREATE DATABASE mssqllocaldb;
-```
-
-### eShopOnWeb:
-
-- I had to Fork the repo(https://github.com/ENIAC-ZA/eShopOnWeb) and make changes to `/src/Web/appsettings.json` & `/src/PublicApi/appsettings.json`. The changes were needed to point to the SQL-Server and to define URLs/Ports. The updated .json files look like this
-
-
-
-- Web app:
-
-<img src="https://i.imgur.com/cLAlBPC.png" height="350" />
-
-- Api:
-
-<img src="https://i.imgur.com/9ZtkKco.png" height="350" />
-
-- Create the services for the apps in kubernetes:
-
-```
-kubectl apply C:\Users\dayzd\.kube/eShop-services.yaml
-```
-
-
-
-#### Now I start running into problems:
-
-I can test if everything is working by cloning the repo, restoring the project and running it using `dotnet run` in the pipeline. This test pipe is called 'test-jenkins-pipe.yaml'
-If I do this, the output of the pipe looks good and we can see no errors:
-
-Web App:
-
-<img src="https://i.imgur.com/nUh6mcf.png" height="350" />
-
-Api App:
-
-<img src="https://i.imgur.com/jCJmxNy.png" height="350" />
-
-The only issue is that using `dotnet run` only runs the application in an interactive-terminal session. Not useful for deploying.
-
-- Restoring and publishing the projects works flawlessly, and you're presented with nice .DLL files. Trying to deploy these files using `dotnet` or `dotnet exec` just does not want to work. The output is identical for both apps:
-<img src="https://i.imgur.com/hw9Sf2F.png" height="100" />
-
-- Going to the line that throws the error you're presented with this:
-
-<img src="https://i.imgur.com/tRuxJXK.png" height="250" />
-
-
-I have tried every combination of launch parameters to try and fix this issue, I tried making a runttimeconfig.json file. But I just couldn't get this error to go away. Something is bugging out, and it's not getting the values from the appsettings.json file
-
-### The complete pipe I built can be found at 'eShopp-jenkins-pipe.yaml' and should work flawlessly if the `System.InvalidOperationException` issue could be solved.
-quick summary:
-- SQL-Server works.
-- Both apps restore.
-- Both apps connect to the database, tables get created.
-- Both apps publish.
-- Both apps "run". `dotnet run`
-- No apps "deploy". `dotnet` // `dotnet exec`
+Next I had to create 3 deployment files for the 3 images, I had to add configMaps to the API and the Webapp to point them to eachother/database. Just to make sure the deployments work I manually imported and deleted them from kubernetes before moving on to jenkins.
+'''
+kubectl apply -f C:\Users\dayzd\.kube\e-sql-dep.yaml
+kubectl apply -f C:\Users\dayzd\.kube\e-web-dep.yaml
+kubectl apply -f C:\Users\dayzd\.kube\e-api-dep.yaml
+'''
 
 
 ## Question 1:
