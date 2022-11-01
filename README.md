@@ -79,8 +79,8 @@ edit 01/11/2022 - I added the kubernetes CLI addon to be able to deploy to kuber
 ## Task 3:
 ### No More Forks :)
 
-Using my newfound knowledge, I was able to figure out where I went wrong first time round. Here are the steps I took to correctly deploy the e-ShopOnWeb application.
-First I had to clone the repo and run docker-compose to create the images. Afterwards I pushed the images to dockerhub, and started working on the deployment files.
+Using my newfound knowledge, I was able to figure out where I went wrong first-time round. Here are the steps I took to correctly deploy the e-ShopOnWeb application.
+First I had to clone the repo and run docker-compose to create the images. Afterwards I pushed the images to dockerhub and started working on the deployment files.
 ```
 docker compose build
 ```
@@ -98,14 +98,14 @@ docker push eniacza/eshopweb:latest
 docker push eniacza/eshopsql:latest
 ```
 
-Next I had to create 3 deployment files for the 3 images, I added configMaps to the API and the Webapp to point them to eachother/database. Just to make sure the deployments work I manually imported and deleted them from kubernetes before moving on to jenkins.
+Next I had to create 3 deployment files for the 3 images, I added configMaps to the API and the Webapp to point them to each-other/database. Just to make sure the deployments work I manually imported and deleted them from kubernetes before moving on to jenkins.
 ```
 kubectl apply -f C:\Users\dayzd\.kube\e-sql-dep.yaml
 kubectl apply -f C:\Users\dayzd\.kube\e-web-dep.yaml
 kubectl apply -f C:\Users\dayzd\.kube\e-api-dep.yaml
 ```
 
-After verifying that all 3 deployments work, I could move on to automating this through Jenkins. I uploaded all 3 deployment files to github, and used the Kubernetes CLI tool to deploy them. This works perfectly and all services are up and running within 30 seconds-ish.
+After verifying that all 3 deployments work, I could move on to automating this through Jenkins. I uploaded all 3 deployment files to github and used the Kubernetes CLI tool to deploy them. This works perfectly and all services are up and running within 30 seconds-ish.
 ```
 node{
 stage('Apply Kubernetes files') {
@@ -119,6 +119,7 @@ stage('Apply Kubernetes files') {
 	}
 }
 ```
+Sadly after many hours, I conceded that the API doesn't interact with the web-app as intended, nor is it accessible. I speculate that this is because the original dockerfile of the API wasn't intended to be used in this fashion. Running `docker-compose UP` on the original images I found that I still couldn't access the API however it interacted with the web app just fine. I tried to replicate this in my deployments, without success.
 
 
 ## Question 1:
@@ -174,14 +175,22 @@ With every single one of the issues I encountered I always tried Googling/Youtub
 
 Some funky issues I encountered:
 
-- Installing dotnet tools: 
+- Figuring out how to use deploy to kubernetes from Jenkins:
+This makes me very sad, but I spent a lot of time figuring out the process of deploying through Jenkins. Most of the tutorials I watched implement pipelines with multi-stage designs which is just not how you go about deploying this. After some late hours I finally realised that I could in fact run `kubectl` inside of a node and my eyes opened for the first time. (Thank you Kubernetes-CLI!) 
 
-For this I initially used `dotnet tool install  dotnet-ef --global` and I got an error, I spend hours debugging this only to realise that the I needed to do a local installation instead of a global one. Most of the fixes for the error I got pointed me in the complete opposite direction.
 
-- Connecting the app to SQLServer: 
+- ConfigMaps: 
+I struggled getting my configMaps to actually load into the correct directory, my VolumeMounts looked like this: 
+```
+volumeMounts:
+          - name: webappsettings-volume
+            mountPath: /app    
+```
+Which I took me forever to figure out why it isn't working, I tried many different solutions until I finally stumbled upon a stackoverflow thread with the answer I was looking for. Turns out I missed the part where you must specify both the directory and the filename or subdirectory. So the string looks like this:
+```
+volumeMounts:
+          - name: webappsettings-volume
+            mountPath: /app/appsettings.json
+            subPath: appsettings.json
+```
 
-Setting up the environment for the apps was super easy, getting them to connect was a pain in the butt. The problem stemmed from a VERY case sensitive connection string that looks like this : `Server=10.104.12.34,1433\\SQL2022;Database=mssqllocaldb;User Id=SA;Password=test123-;Initial Catalog=Microsoft.eShopOnWeb.CatalogDb;` If you mess up the order, or leave out ANYTHING It just would not connect.
-
-- Getting `dotnet run` to run the application: 
-
-This was just a weird one for me, the apps would not run without me having to delete the `wwwroot` folder from each app's directory. From what I've found out, this is due to `dotnet run` not wanting to replace files, even if they are created at runtime.
